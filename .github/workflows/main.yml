@@ -1,0 +1,18 @@
+name: Dummy Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: "Which environment to deploy to"
+        required: true
+        default: "dev"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.target_env }}
+
+    steps:
+      - name: Print environment name
+        run: echo "deploy to ${{ github.environment }}"
