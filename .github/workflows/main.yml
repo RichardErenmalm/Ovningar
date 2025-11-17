@@ -15,4 +15,5 @@ jobs:
 
     steps:
       - name: Print environment name
-        run: echo "deploy to ${{ github.environment }}"
+        run: echo "deploy to ${{ job.environment }}"
+
