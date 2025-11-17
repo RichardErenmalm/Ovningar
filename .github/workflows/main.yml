@@ -15,5 +15,4 @@ jobs:
 
     steps:
       - name: Print environment name
-        run: echo "deploy to ${{ job.environment }}"
-
+        run: echo "deploy to ${{ github.event.inputs.target_env }}"
