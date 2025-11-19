@@ -1,4 +1,4 @@
-name: Dummy Deploy
+name: Dummy Deploy with Secrets
 
 on:
   workflow_dispatch:
@@ -15,4 +15,10 @@ jobs:
 
     steps:
       - name: Print environment name
-        run: echo "deploy to ${{ github.event.inputs.target_env }}"
+        run: |
+          echo "deploy to ${{ github.environment }}"
+
+      - name: Print masked API key
+        run: |
+          echo "API key is: ${{ secrets.MY_API_KEY }}"
+
