@@ -22,3 +22,7 @@ jobs:
         run: |
           echo "API key is: ${{ secrets.MY_API_KEY }}"
 
+      - name: Print service name
+        run: |
+          echo "deploying: ${{ vars.SERVICE_NAME }}"
+
