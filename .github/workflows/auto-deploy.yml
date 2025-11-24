@@ -13,10 +13,12 @@ jobs:
     environment: prod
     steps:
       - name: Branch info
-        run: echo "Branch: main"
+        run: |
+          echo "Branch: main"
 
       - name: Deploy to prod
-        run: echo "Deploying to PROD"
+        run: |
+          echo "Deploying to PROD"
 
   deploy-dev:
     if: ${{ github.ref != 'refs/heads/main' }}
@@ -24,8 +26,11 @@ jobs:
     environment: dev
     steps:
       - name: Branch info
-        run: echo "Branch: not main"
+        run: |
+          echo "Branch: not main"
 
       - name: Deploy to dev
-        run: echo "Deploying to DEV"
+        run: |
+          echo "Deploying to DEV"
+
 
