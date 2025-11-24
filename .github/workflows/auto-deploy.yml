@@ -1,0 +1,19 @@
+name: Auto Deploy (Exercise 4)
+
+on:
+  push:
+    branches:
+      - '**'   # körs på alla branches
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Välj environment baserat på branch
+    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+
+    steps:
+      - name: Print which environment will be deployed
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Deploying to environment: ${{ github.environment }}"
