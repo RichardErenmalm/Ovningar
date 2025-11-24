@@ -1,19 +1,31 @@
-name: Auto Deploy (Exercise 4)
+name: Deploy on Push
 
 on:
   push:
     branches:
-      - '**'   # körs på alla branches
+      - '**'
 
 jobs:
-  deploy:
+
+  deploy-prod:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-
-    # Välj environment baserat på branch
-    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
-
+    environment: prod
     steps:
-      - name: Print which environment will be deployed
-        run: |
-          echo "Branch: ${{ github.ref_name }}"
-          echo "Deploying to environment: ${{ github.environment }}"
+      - name: Branch info
+        run: echo "Branch: main"
+
+      - name: Deploy to prod
+        run: echo "Deploying to PROD"
+
+  deploy-dev:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Branch info
+        run: echo "Branch: not main"
+
+      - name: Deploy to dev
+        run: echo "Deploying to DEV"
+
